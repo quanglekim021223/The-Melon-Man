@@ -5,6 +5,9 @@ game.structures = {
 		{tileColumn: 2, tileRow: 0, x: 2, y: 0}, {tileColumn: 5, tileRow: 1, x: 2, y: -1, collidable: false}
 	],
 	"snowPlatform": [{tileColumn: 0, tileRow: 1, x: 0, y: 0}, {tileColumn: 1, tileRow: 1, x: 1, y: 0}, {tileColumn: 2, tileRow: 1, x: 2, y: 0}],
+	"newPlatform": [
+        {tileColumn: 3, tileRow: 2, x: 0, y: 0}, {tileColumn: 4, tileRow: 2, x: 1, y: 0}
+    ],
 	"gelPlatform": [{tileColumn: 3, tileRow: 1, x: 0, y: 0}, {tileColumn: 4, tileRow: 1, x: 1, y: 0}],
 	"seaWeedPlatform": [{tileColumn: 0, tileRow: 2, x: 0, y: 0}, {tileColumn: 0, tileRow: 3, x: 0, y: 1}],
 	"eyePlatform_1": [{tileColumn: 1, tileRow: 2, x: 0, y: 0}, {tileColumn: 2, tileRow: 2, x: 1, y: 0}],
@@ -33,11 +36,28 @@ game.generateMap = function () {
 	// Generate the rest of the platforms
 	for (var i = 1; i < 20; i++) {
 		this.map.structures.push({
-			name: "grassPlatform",
+			name: "newPlatform",
 			x: Math.floor(Math.random() * 8),
 			y: -i * 3
 		})
 	}
+
+	for (var i = 20; i < 40; i++) {
+        this.map.structures.push({
+            name: "fallingKnife",
+            x: Math.floor(Math.random() * 8),
+            y: -i * 3
+        });
+    }
+
+    // Thêm nham thạch đuổi theo người chơi từ dưới
+    for (var i = 40; i < 60; i++) {
+        this.map.structures.push({
+            name: "chasingLava",
+            x: Math.floor(Math.random() * 8),
+            y: -i * 3
+        });
+    }
 
 	for (var i = 20; i < 40; i++) {
 		randomX = Math.floor(Math.random() * 8)

@@ -15,11 +15,22 @@ game.drawTile = function (tileColumn, tileRow, x, y) {
 }
 
 game.drawStructure = function (name, x, y) {
-	var structure = game.structures[name]
-	for (var i = 0; i < structure.length; i++) {
-		game.drawTile(structure[i].tileColumn, structure[i].tileRow, structure[i].x + x, structure[i].y + y)
-	}
-}
+    var structure = game.structures[name];
+    for (var i = 0; i < structure.length; i++) {
+        var tile = structure[i];
+        game.context.drawImage(
+            game.textures,
+            tile.tileColumn * game.options.tileWidth,
+            tile.tileRow * game.options.tileHeight,
+            game.options.tileWidth,
+            game.options.tileHeight,
+            x * game.options.tileWidth,
+            y * game.options.tileHeight,
+            game.options.tileWidth,
+            game.options.tileHeight
+        );
+    }
+};
 
 game.drawPlayer = function () {
 	actualPlayerTile = game.player.animations[game.player.direction][game.player.animationFrameNumber % 4]

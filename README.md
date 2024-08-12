@@ -14,10 +14,21 @@ Use space to jump, and A, D or arrows to move left / right.
 2. Specify the platform's structure and add it to the generator:
     - Open the generator.js file and add a new structure to array of structures:
       ```javascript
-      game.structures = [
-        ...,
-        "newPlatform" : [{tileColumn: 3, tileRow: 2, x: 0, y: 0}, {tileColumn: 4, tileRow: 2, x: 1, y: 0}, ...]
-      ]
+            game.structures = {
+          // Các cấu trúc hiện có
+          "grassPlatform": [
+              {tileColumn: 0, tileRow: 0, x: 0, y: 0}, {tileColumn: 5, tileRow: 1, x: 0, y: -1, collidable: false},
+              {tileColumn: 1, tileRow: 0, x: 1, y: 0}, {tileColumn: 5, tileRow: 1, x: 1, y: -1, collidable: false},
+              {tileColumn: 2, tileRow: 0, x: 2, y: 0}, {tileColumn: 5, tileRow: 1, x: 2, y: -1, collidable: false}
+          ],
+          // Thêm cấu trúc mới cho dao và nham thạch
+          "fallingKnife": [
+              {tileColumn: 0, tileRow: 3, x: 0, y: 0}
+          ],
+          "chasingLava": [
+              {tileColumn: 1, tileRow: 3, x: 0, y: 0}
+          ]
+      };
       // tileColumn and tileRow are coordinates in textures.png file (starting from 0), and x & y are coordinates in game
       ```
     - After that you can tell the generator where to place your platform:

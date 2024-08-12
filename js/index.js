@@ -5,6 +5,7 @@ var game = {
 	counter: document.getElementById('counter'),
 	textures: new Image(),
 	drawPending: false,
+	score: 0,
 	backgrounds: {
 			'sky': {
 				image: new Image(),
@@ -31,8 +32,8 @@ var game = {
 		this.canvas.height = this.options.canvasHeight
 		this.context.imageSmoothingEnabled = false
 
-    this.backgrounds['sky'].image.src = "background.png"
-		this.backgrounds['trees'].image.src = "trees.png"
+    this.backgrounds['sky'].image.src = "heaven.jpg"
+		this.backgrounds['trees'].image.src = "angel.jpg"
 
 		for (var key in this.backgrounds) {
 			this.backgrounds[key].image.onload = function (currentKey) {
@@ -48,3 +49,12 @@ var game = {
 	},
 	isOver: false
 }
+function updateScore(points) {
+	game.score += points;
+	document.getElementById('score').innerText = "Score: " + game.score;
+  }
+  
+  // Example: Increment score when the player jumps
+  game.sounds.jump.addEventListener('play', function() {
+	updateScore(10);
+  });
